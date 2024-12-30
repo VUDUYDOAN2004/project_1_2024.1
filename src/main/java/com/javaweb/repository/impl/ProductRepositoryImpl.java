@@ -20,19 +20,18 @@ public class ProductRepositoryImpl implements ProductRepository{
 	@Override
 	public List<ProductEntity> findAll() {
 		// TODO Auto-generated method stub
-		StringBuilder sql = new StringBuilder("select * from product");
+		StringBuilder sql = new StringBuilder("select * from products");
 		List<ProductEntity> products = new ArrayList<>();
 		try(Connection conn = ConnectorJDBC.getConnection(); ) {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql.toString());
 			while(rs.next()) {
 				ProductEntity product = new ProductEntity();
-				product.setPro_name(rs.getNString("pro_name"));
-				product.setPro_desc(rs.getNString("pro_desc"));
-				product.setPro_quantity(rs.getInt("pro_quantity"));
-				product.setPro_price(rs.getInt("pro_price"));
-				product.setPro_pic(rs.getNString("pro_pic"));
-				product.setPro_status(rs.getInt("pro_status"));
+				product.setProductName(rs.getNString("ProductName"));
+				product.setDescription(rs.getNString("Description"));
+				product.setPrice(rs.getInt("Price"));
+				product.setImageURL(rs.getNString("ImageURL"));
+				
 				products.add(product);
 			}
 			
