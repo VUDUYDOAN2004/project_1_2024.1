@@ -1,13 +1,13 @@
-package com.project1.shoppingwebsite;
+package com.shoppingWeb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShoppingWebsiteApplication {
+public class Project1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShoppingWebsiteApplication.class, args);
+		SpringApplication.run(Project1Application.class, args);
 	}
 
 }
