@@ -37,10 +37,6 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>hellofx</artifactId>
-			<version>hellofx</version>
-		</dependency>
+	
 	</dependencies>
 </project>
