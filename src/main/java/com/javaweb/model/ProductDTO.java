@@ -1,46 +1,61 @@
 package com.javaweb.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class ProductDTO {
-	private Long ProductID;
-	private String ProductName;
-	private String Description;
-	private int Price;
-	private String ImageURL;
-	public Long getProductID() {
-		return ProductID;
+	private Long product_id;
+	private String product_name;
+	private String description;
+	private BigDecimal price;
+	private String image_url;
+	private Long category_id;
+	public Long getCategory_id() {
+		return category_id;
 	}
-	public void setProductID(Long productID) {
-		ProductID = productID;
+	public void setCategory_id(Long category_id) {
+		this.category_id = category_id;
 	}
-	public String getProductName() {
-		return ProductName;
+	public Long getProduct_id() {
+		return product_id;
 	}
-	public void setProductName(String productName) {
-		ProductName = productName;
+	public void setProduct_id(Long product_id) {
+		this.product_id = product_id;
+	}
+	
+	
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-	public int getPrice() {
-		return Price;
+	public BigDecimal getPrice() {
+		return price;
 	}
-	public void setPrice(int price) {
-		Price = price;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
-	public String getImageURL() {
-		return ImageURL;
+	public String getImage_url() {
+		return image_url;
 	}
-	public void setImageURL(String imageURL) {
-		ImageURL = imageURL;
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
 	}
+	
+	
+	
+	
 	
 	
 	

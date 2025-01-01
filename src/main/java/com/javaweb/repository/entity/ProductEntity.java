@@ -1,5 +1,7 @@
 package com.javaweb.repository.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,63 +17,68 @@ public class ProductEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ProductID;
+	private Long product_id;
 	
-	@Column(name="ProductName")
-	private String ProductName;
+	@Column(name="product_name")
+	private String product_name;
 	
-	@Column(name="Description")
-	private String Description;
+	@Column(name="description")
+	private String description;
 	
 	@Column(name="Price")
-	private int Price;
+	private BigDecimal price;
 	
-	@Column(name="ImageURL")
-	private String ImageURL;
+	@Column(name="image_url")
+	private String image_url;
 	
 	@ManyToOne
-	@JoinColumn(name="CategoryID")
+	@JoinColumn(name="category_id")
 	private CategoryEntity category;
 
 	
-	public Long getProductID() {
-		return ProductID;
+	
+
+	public Long getProduct_id() {
+		return product_id;
 	}
 
-	public void setProductID(Long productID) {
-		ProductID = productID;
+	public void setProduct_id(Long product_id) {
+		this.product_id = product_id;
 	}
 
-	public String getProductName() {
-		return ProductName;
+	
+
+	
+	public String getProduct_name() {
+		return product_name;
 	}
 
-	public void setProductName(String productName) {
-		ProductName = productName;
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	public int getPrice() {
-		return Price;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setPrice(int price) {
-		Price = price;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
-	public String getImageURL() {
-		return ImageURL;
+	public String getImage_url() {
+		return image_url;
 	}
 
-	public void setImageURL(String imageURL) {
-		ImageURL = imageURL;
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
 	}
 
 	public CategoryEntity getCategory() {
@@ -81,6 +88,9 @@ public class ProductEntity {
 	public void setCategory(CategoryEntity category) {
 		this.category = category;
 	}
+
+	
+	
 	
 	
 	

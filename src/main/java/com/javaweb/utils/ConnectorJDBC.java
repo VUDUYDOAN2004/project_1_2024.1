@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectorJDBC {
-	static final String DB_URL = "jdbc:mysql://localhost:3306/clothingweb";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/clothingweb1";
 	static final String USER = "root";
 	static final String PASSWORD = "123456";
 	

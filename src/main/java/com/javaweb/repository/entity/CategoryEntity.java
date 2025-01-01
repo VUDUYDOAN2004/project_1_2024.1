@@ -17,28 +17,30 @@ import javax.persistence.Table;
 public class CategoryEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long CategoryID;
+	private Long category_id;
 	
-	@Column(name="CategoryName")
-	private String CategoryName;
+	@Column(name="category_name")
+	private String category_name;
 	
 	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
 	private List<ProductEntity> productEntities = new ArrayList<>();
 
-	public Long getCategoryID() {
-		return CategoryID;
+	
+
+	public Long getCategory_id() {
+		return category_id;
 	}
 
-	public void setCategoryID(Long categoryID) {
-		CategoryID = categoryID;
+	public void setCategory_id(Long category_id) {
+		this.category_id = category_id;
 	}
 
-	public String getCategoryName() {
-		return CategoryName;
+	public String getCategory_name() {
+		return category_name;
 	}
 
-	public void setCategoryName(String categoryName) {
-		CategoryName = categoryName;
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
 	}
 
 	public List<ProductEntity> getProductEntities() {
@@ -48,7 +50,7 @@ public class CategoryEntity {
 	public void setProductEntities(List<ProductEntity> productEntities) {
 		this.productEntities = productEntities;
 	}
-	
-	
+
+		
 	
 }

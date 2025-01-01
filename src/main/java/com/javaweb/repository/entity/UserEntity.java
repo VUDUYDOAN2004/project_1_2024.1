@@ -12,25 +12,25 @@ import javax.persistence.Table;
 public class UserEntity {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long UserID;
+    private Long userID;
 
     @Column(name = "Username", nullable = false, unique = true)
-    private String Username;
+    private String username;
 
     @Column(name = "PasswordHash", nullable = false)
-    private String PasswordHash;
+    private String passwordHash;
 
     @Column(name = "FullName")
-    private String FullName;
+    private String fullName;
 
     @Column(name = "Email", nullable = false, unique = true)
-    private String Email;
+    private String email;
 
     @Column(name = "PhoneNumber")
-    private String PhoneNumber;
+    private String phoneNumber;
 
     @Column(name = "Address")
-    private String Address;
+    private String address;
     
     
 
