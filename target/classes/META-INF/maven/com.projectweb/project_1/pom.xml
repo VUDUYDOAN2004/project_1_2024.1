@@ -37,6 +37,10 @@
 		</dependency>
 
 
+<<<<<<< HEAD:target/classes/META-INF/maven/com.projectweb/project_1/pom.xml
 		
+=======
+	
+>>>>>>> b24f6593c7534e6ad7ed128b2385ff82a47b4c09:target/classes/META-INF/maven/com.projectweb/spring-boot-non-jwt/pom.xml
 	</dependencies>
 </project>
