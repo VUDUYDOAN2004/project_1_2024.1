@@ -1,51 +1,37 @@
 package com.javaweb.repository.entity;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cartitems")
-public class CartItemEntity {
+@Table(name = "productsizes")
+public class ProductSizeEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_item_id")
-    private Long cartItemId;
+    @EmbeddedId
+    private ProductSizeId id;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private CartEntity cart;
-
-    @ManyToOne
+    @MapsId("productId")
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 
     @ManyToOne
+    @MapsId("sizeId")
     @JoinColumn(name = "size_id")
     private SizeEntity size;
 
     private int quantity;
 
-	public Long getCartItemId() {
-		return cartItemId;
+	public ProductSizeId getId() {
+		return id;
 	}
 
-	public void setCartItemId(Long cartItemId) {
-		this.cartItemId = cartItemId;
-	}
-
-	public CartEntity getCart() {
-		return cart;
-	}
-
-	public void setCart(CartEntity cart) {
-		this.cart = cart;
+	public void setId(ProductSizeId id) {
+		this.id = id;
 	}
 
 	public ProductEntity getProduct() {

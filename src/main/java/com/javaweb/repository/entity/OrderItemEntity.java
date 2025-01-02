@@ -9,18 +9,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
+
 @Entity
-@Table(name = "cartitems")
-public class CartItemEntity {
+@Table(name = "order_items")
+public class OrderItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_item_id")
-    private Long cartItemId;
+    @Column(name = "order_item_id")
+    private Long orderItemId;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private CartEntity cart;
+    @JoinColumn(name = "order_id")
+    private OrderEntity order;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -32,20 +34,22 @@ public class CartItemEntity {
 
     private int quantity;
 
-	public Long getCartItemId() {
-		return cartItemId;
+    private double price;
+
+	public Long getOrderItemId() {
+		return orderItemId;
 	}
 
-	public void setCartItemId(Long cartItemId) {
-		this.cartItemId = cartItemId;
+	public void setOrderItemId(Long orderItemId) {
+		this.orderItemId = orderItemId;
 	}
 
-	public CartEntity getCart() {
-		return cart;
+	public OrderEntity getOrder() {
+		return order;
 	}
 
-	public void setCart(CartEntity cart) {
-		this.cart = cart;
+	public void setOrder(OrderEntity order) {
+		this.order = order;
 	}
 
 	public ProductEntity getProduct() {
@@ -70,6 +74,14 @@ public class CartItemEntity {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
     
