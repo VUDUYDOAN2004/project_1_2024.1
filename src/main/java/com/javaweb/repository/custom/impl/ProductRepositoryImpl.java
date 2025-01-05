@@ -58,7 +58,7 @@ public  class ProductRepositoryImpl implements ProductRepositoryCustom {
 	@Override
 	public List<ProductEntity> findByCategory(String category) {
 		// TODO Auto-generated method stub
-		StringBuilder sql = new StringBuilder("select * from products p join category c on p.category_id = c.category_id "
+		StringBuilder sql = new StringBuilder("select * from products p join categories c on p.category_id = c.category_id "
 				+ "where category_name = '"+category+"'");
 		Query query = entityManager.createNativeQuery(sql.toString(), ProductEntity.class);
 	

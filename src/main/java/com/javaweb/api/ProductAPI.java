@@ -25,40 +25,40 @@ public class ProductAPI {
 	
 	
 	
-	@GetMapping(value = "/api/products/")
+	@GetMapping(value = "/api/products")
 	public List<ProductDTO> getProducts(){
 		List<ProductDTO> result = productService.findAll();
 		return result;
 	}
 	
-	@GetMapping(value = "/products/price/")
+	@GetMapping(value = "/products/price")
 	public List<ProductDTO> price(@RequestParam BigDecimal minprice, 
 			@RequestParam BigDecimal maxprice){
 		List<ProductDTO> result = productService.findByPrice(minprice, maxprice);
 		return result;
 	}
-	@GetMapping(value = "/products/name/{name}")
-	public List<ProductDTO> name(@PathVariable String name){
-		List<ProductDTO> result = productService.findByName(name);
-		return result;
-	}
-	@GetMapping(value = "/products/category/{category}")
-	public List<ProductDTO> category(@PathVariable String category){
-		List<ProductDTO> result = productService.findByName(category);
-		return result;
-	}
+//	@GetMapping(value = "/products/name")
+//	public List<ProductDTO> name(@RequestParam String name){
+//		List<ProductDTO> result = productService.findByName(name);
+//		return result;
+//	}
+//	@GetMapping(value = "/products/category")
+//	public List<ProductDTO> category(@RequestParam String category){
+//		List<ProductDTO> result = productService.findByCategory(category);
+//		return result;
+//	}
 	@GetMapping(value = "/products/size/{size}")
 	public List<ProductDTO> size(@PathVariable String size){
 		List<ProductDTO> result = productService.findBySize(size);
 		return result;
 	}
-	@GetMapping(value = "/products/filter")
-	public List<ProductDTO> filter(@RequestParam(required = false) BigDecimal minprice,
-			@RequestParam(required = false) BigDecimal maxprice,
-	        @RequestParam(required = false) String size){
-		List<ProductDTO> result = productService.findByFilter(minprice, maxprice, size);
-		return result;
-	}
+//	@GetMapping(value = "/products/filter")
+//	public List<ProductDTO> filter(@RequestParam(required = false) BigDecimal minprice,
+//			@RequestParam(required = false) BigDecimal maxprice,
+//	        @RequestParam(required = false) String size){
+//		List<ProductDTO> result = productService.findByFilter(minprice, maxprice, size);
+//		return result;
+//	}
 	
 	
 	
