@@ -20,10 +20,13 @@ public class ProductController {
 	@GetMapping(value = "/products/filter")
     public ModelAndView productPage(@RequestParam(required = false) BigDecimal minprice,
 			@RequestParam(required = false) BigDecimal maxprice,
-	        @RequestParam(required = false) String size) {
-        List<ProductDTO> products = productService.findByFilter(minprice, maxprice, size);
+	        @RequestParam(required = false) String category) {
+        List<ProductDTO> products = productService.findByFilter(minprice, maxprice, category);
         ModelAndView mav = new ModelAndView("product"); 
-
+        
+        mav.addObject("minprice", minprice);
+        mav.addObject("maxprice", maxprice);
+        mav.addObject("category", category);
         mav.addObject("products", products);
         
         return mav;
@@ -34,6 +37,7 @@ public class ProductController {
         ModelAndView mav = new ModelAndView("product"); 
 
         mav.addObject("products", products);
+        mav.addObject("name", name);
         
         return mav;
     }

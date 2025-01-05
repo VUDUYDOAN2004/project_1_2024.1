@@ -35,7 +35,8 @@
 
 		                   <div class="search-bar position-relative">
 		                       <form action="/products/name" method="GET" id="productNameForm">
-		                           <input type="text" placeholder="Tìm kiếm sản phẩm..." name="name">
+		                           <input type="text" placeholder="Tìm kiếm sản phẩm..." name="name"
+								   value="${name != null ? name : ''}">
 		                           <button type="submit" id="btnSearchProduct">
 		                               <i class="fas fa-search"></i>
 		                           </button>

@@ -32,7 +32,8 @@
 
                     <div class="search-bar position-relative">
                         <form action="/products/name" method="GET">
-                            <input type="text" placeholder="Tìm kiếm sản phẩm..." name="name">
+                            <input type="text" placeholder="Tìm kiếm sản phẩm..." name="name"
+							value="${name != null ? name : ''}">
                             <button type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -64,23 +65,40 @@
                     
                     <div>
                         <label for="minprice">Giá tối thiểu:</label>
-                        <input class="form-control" type="number" id="minprice" name="minprice" placeholder="0">
+                        <input class="form-control" type="number" id="minprice" name="minprice" placeholder="0"
+						 value="${minprice != null ? minprice : '0'}">
                     </div>
                     <div>
                         <label for="maxprice">Giá tối đa:</label>
-                        <input class="form-control" type="number" id="maxprice" name="maxprice" placeholder="1000000">
+                        <input class="form-control" type="number" id="maxprice" name="maxprice" placeholder=""
+						value="${maxprice != null ? maxprice : ''}">
                     </div>
 
-                    <div>
-                        <label for="sizeFilter">Kích thước:</label>
-	                    <select class="form-control"  id="sizeFilter" name="size">
-	                        <option value="">Tất cả</option>
-	                        <option value="S">S</option>
-	                        <option value="M">M</option>
-	                        <option value="XL">XL</option>
-	                        <option value="XXL">XXL</option>
-	                    </select>
-                    </div>
+					<!-- <div>
+					    <label for="sizeFilter">Kích thước:</label>
+					    <select class="form-control"  id="sizeFilter" name="size">
+					        <option value="">Tất cả</option>
+					        <option value="S">S</option>
+					        <option value="M">M</option>
+					        <option value="XL">XL</option>
+					        <option value="XXL">XXL</option>
+					    </select>
+					</div> -->
+					<div>
+						<label for="categoryFilter">Thể loại</label>
+						<select class="form-control" id="categoryFilter" name="category">
+						    <option value="" ${category == null || category == '' ? 'selected' : ''}>Tất cả</option>
+						    <option value="QUẦN ÁO BÓNG ĐÁ" ${category == 'QUẦN ÁO BÓNG ĐÁ' ? 'selected' : ''}>QUẦN ÁO BÓNG ĐÁ</option>
+						    <option value="QUẦN ÁO THỦ MÔN" ${category == 'QUẦN ÁO THỦ MÔN' ? 'selected' : ''}>QUẦN ÁO THỦ MÔN</option>
+						    <option value="QUẦN ÁO BÓNG ĐÁ THEO MÀU" ${category == 'QUẦN ÁO BÓNG ĐÁ THEO MÀU' ? 'selected' : ''}>QUẦN ÁO BÓNG ĐÁ THEO MÀU</option>
+						    <option value="QUẦN ÁO BÓNG CHUYỀN" ${category == 'QUẦN ÁO BÓNG CHUYỀN' ? 'selected' : ''}>QUẦN ÁO BÓNG CHUYỀN</option>
+						    <option value="QUẦN ÁO BÓNG RỔ" ${category == 'QUẦN ÁO BÓNG RỔ' ? 'selected' : ''}>QUẦN ÁO BÓNG RỔ</option>
+						    <option value="QUẦN ÁO CẦU LÔNG" ${category == 'QUẦN ÁO CẦU LÔNG' ? 'selected' : ''}>QUẦN ÁO CẦU LÔNG</option>
+						    <option value="THỜI TRANG THỂ THAO" ${category == 'THỜI TRANG THỂ THAO' ? 'selected' : ''}>THỜI TRANG THỂ THAO</option>
+						    <option value="PHỤ KIỆN" ${category == 'PHỤ KIỆN' ? 'selected' : ''}>PHỤ KIỆN</option>
+						</select>
+
+					</div> 
                     <div>
                         <input class="btn" type="submit" value="Lọc" id="productFilter">
                     </div>
@@ -95,8 +113,15 @@
 	        <div class="row mt-3">
 				<c:forEach var="product" items="${products}">
 					<div class="col-md-4 product-item text-center">
-						<a href="#"><img src="${product.image_url}" alt="${product.product_name}" class="img-fluid"></a>
+						<a href="#"><img src="/images/${product.image_url}" alt="${product.product_name}" class="img-fluid"></a>
 						<a href="#"><h6>${product.product_name}</h6></a>
+						<select class="form-control"  id="sizeFilter" name="size">
+																        
+																        <option value="S">Size S</option>
+																        <option value="M">Size M</option>
+																        <option value="XL"> Size XL</option>
+																        <option value="XXL">Size XXL</option>
+											</select>
 						<p>Giá: ${product.price}</p>
 						<p>					<button class="btn addtocart" data-id="${product.product_id}">
 																        Thêm vào giỏ hàng

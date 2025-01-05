@@ -70,14 +70,14 @@ public class ProductService  {
 		}
 		return result;
 	}
-	public List<ProductDTO> findByFilter(BigDecimal minprice, BigDecimal maxprice, String size) {
+	public List<ProductDTO> findByFilter(BigDecimal minprice, BigDecimal maxprice, String category) {
 		if (minprice == null) minprice = BigDecimal.ZERO;
 	    if (maxprice == null) maxprice = BigDecimal.valueOf(Long.MAX_VALUE);
 	    List<ProductEntity> productEntities = new ArrayList<ProductEntity>();
-	    if(size == null || size.isEmpty())	
+	    if(category == null || category.isEmpty())	
 	    	 productEntities = productRepository.findByPrice(minprice, maxprice);
 	    else
-	    	 productEntities = productRepository.findByFilter(minprice, maxprice, size);
+	    	 productEntities = productRepository.findByFilter(minprice, maxprice, category);
 		List<ProductDTO> result = new ArrayList<ProductDTO>();
 		for(ProductEntity item: productEntities) {
 			ProductDTO product = productDTOConverter.toProductDTO(item);

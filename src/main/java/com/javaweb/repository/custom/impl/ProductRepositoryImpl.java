@@ -89,12 +89,12 @@ public  class ProductRepositoryImpl implements ProductRepositoryCustom {
 	}
 
 	@Override
-	public List<ProductEntity> findByFilter(BigDecimal minprice, BigDecimal maxprice, String size) {
+	public List<ProductEntity> findByFilter(BigDecimal minprice, BigDecimal maxprice, String category) {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder("select *  from products p "
 				+ "join  productsizes ps on p.product_id = ps.product_id "
-				+ "join sizes s on s.size_id = ps.size_id "
-				+ "where p.price >= "+minprice+" and p.price <= "+maxprice+" and s.size_name = '"+size+"' ");
+				+ "join categories c on c.category_id = p.category_id "
+				+ "where p.price >= "+minprice+" and p.price <= "+maxprice+" and c.category_name = '"+category+"' ");
 		
 		Query query = entityManager.createNativeQuery(sql.toString(), ProductEntity.class);
 	

@@ -37,7 +37,8 @@
 
 	                   <div class="search-bar position-relative">
 	                       <form action="/products/name" method="GET" id="productNameForm">
-	                           <input type="text" placeholder="Tìm kiếm sản phẩm..." name="name">
+	                           <input type="text" placeholder="Tìm kiếm sản phẩm..." name="name"
+							   value="${name != null ? name : ''}">
 	                           <button type="submit" id="btnSearchProduct">
 	                               <i class="fas fa-search"></i>
 	                           </button>
@@ -87,6 +88,13 @@
 				<div class="col-md-4 product-item text-center">
 					<a href="#"><img src="/images/${product.image_url}" alt="${product.product_name}" class="img-fluid"></a>
 					<a href="#"><h6>${product.product_name}</h6></a>
+					<select class="form-control"  id="sizeFilter" name="size">
+										        
+										        <option value="S">Size S</option>
+										        <option value="M">Size M</option>
+										        <option value="XL"> Size XL</option>
+										        <option value="XXL">Size XXL</option>
+					</select>
 					<p>Giá: ${product.price} đ </p>
 					<p>					<button class="btn addtocart" data-id="${product.product_id}">
 										        Thêm vào giỏ hàng
