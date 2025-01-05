@@ -92,7 +92,6 @@ public  class ProductRepositoryImpl implements ProductRepositoryCustom {
 	public List<ProductEntity> findByFilter(BigDecimal minprice, BigDecimal maxprice, String category) {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder("select *  from products p "
-				+ "join  productsizes ps on p.product_id = ps.product_id "
 				+ "join categories c on c.category_id = p.category_id "
 				+ "where p.price >= "+minprice+" and p.price <= "+maxprice+" and c.category_name = '"+category+"' ");
 		
