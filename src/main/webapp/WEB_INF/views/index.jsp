@@ -86,7 +86,7 @@
         <div class="row mt-3">
 			<c:forEach var="product" items="${products}">
 				<div class="col-md-4 product-item text-center">
-					<a href="#"><img src="/images/${product.image_url}" alt="${product.product_name}" class="img-fluid"></a>
+					<a href="#"><img src="/images/${product.image_url}" alt="${product.product_name}"></a>
 					<a href="#"><h6>${product.product_name}</h6></a>
 					<select class="form-control"  id="sizeFilter" name="size">
 										        
