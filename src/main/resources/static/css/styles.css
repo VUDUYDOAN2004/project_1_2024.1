@@ -1,7 +1,7 @@
 .product-item {
     padding-top: 15px;
     padding-bottom: 15px;
-	border: var(--color-one) solid;
+	border: var(--color-one) solid 1px;
 }
 
 .product-item a img{
