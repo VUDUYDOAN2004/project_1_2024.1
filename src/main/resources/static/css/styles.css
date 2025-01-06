@@ -1,14 +1,18 @@
 .product-item {
     padding-top: 15px;
-    padding-bottom: 15px;
-	border: var(--color-one) solid;
+    padding-bottom: 0px;
+	border: var(--color-one) solid 1px;
 }
-
+.product-item .pro_name{
+	border: #fff solid;
+	width: 368.4px;
+	height:38.4px;
+	margin-bottom: 5px;
+}
 .product-item a img{
 	height: 300px;
 	width: auto;
 }
-
 .fixed-thanhtoan{
     position: fixed; 
     top: 130px; 

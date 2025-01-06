@@ -87,7 +87,7 @@
 			<c:forEach var="product" items="${products}">
 				<div class="col-md-4 product-item text-center">
 					<a href="#"><img src="/images/${product.image_url}" alt="${product.product_name}"></a>
-					<a href="#"><h6>${product.product_name}</h6></a>
+					<div class="pro_name"><a href="#"><h6>${product.product_name}</h6></a></div>
 					<select class="form-control"  id="sizeFilter" name="size">
 										        
 										        <option value="S">Size S</option>

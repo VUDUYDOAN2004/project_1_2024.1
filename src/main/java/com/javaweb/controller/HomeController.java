@@ -22,10 +22,12 @@ public class HomeController {
 	
 //    HttpServletRequest request
     @GetMapping(value="/")
-    public String home(){
-//        ModelAndView modelAndView = new ModelAndView("");
-//        return modelAndView;
-    	return "index";
+    public ModelAndView home(){
+       ModelAndView mav = new ModelAndView("index");
+       List<ProductDTO> products = productService.findAll();
+       mav.addObject("products", products);
+        return mav;
+    	
     }
 
     @GetMapping(value="/products")
