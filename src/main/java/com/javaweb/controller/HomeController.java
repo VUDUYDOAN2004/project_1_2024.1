@@ -32,10 +32,10 @@ public class HomeController {
     public String productPage() {
     	return "product";
     }
-    @GetMapping(value="/cart")
-    public String cartPage() {
-    	return "cart";
-    }
+//    @GetMapping(value="/cart")
+//    public String cartPage() {
+//    	return "cart";
+//    }
     @GetMapping(value="/login")
     public String loginPage() {
     	return "login";

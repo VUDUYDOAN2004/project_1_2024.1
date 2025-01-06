@@ -11,7 +11,7 @@ public class ProductDTO {
 	private Long product_id;
 	private String product_name;
 	private String description;
-	private BigDecimal price;
+	private double price;
 	private String image_url;
 	private Long category_id;
 	public Long getCategory_id() {
@@ -40,11 +40,11 @@ public class ProductDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public BigDecimal getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setPrice(double d) {
+		this.price = d;
 	}
 	public String getImage_url() {
 		return image_url;
