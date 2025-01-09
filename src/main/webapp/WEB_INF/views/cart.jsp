@@ -74,6 +74,7 @@
                 <div class="col-9"> 
                     <div class="table-cart"> 
                         <h2>Giỏ hàng của bạn</h2> 
+						<c:set var="totalAmount" value="0" />
                         <c:forEach var="cartitem" items="${cartitems}">						
 							<div class="cart-item">
 							    <div class="left-item">
@@ -90,11 +91,11 @@
 							            </div>
 							        </div>
 							        <div class="item-quantity">
-							            <input type="number" value="${cartitem.quantity}" min="1" class="cart-item-quantity">
+							            <input type="number" value="${cartitem.quantity}" min="1" class="cart-item-quantity" data-cartitem-id="${cartitem.cart_item_id}">
 							        </div>
 							        <div class="item-price">
 							            <p>
-							                <span class="price">${cartitem.product.price}₫</span>
+							                <span class="price">Đơn giá: ${cartitem.product.price}₫</span>
 							            </p>
 							        </div>
 							        <div class="item-total-price">
@@ -103,13 +104,14 @@
 							                <span class="price">${cartitem.quantity * cartitem.product.price}₫</span>
 							            </div>
 							            <div class="remove">
-							                <a href="/" class="cart">
+							                <a href="/" class="remove-icon" data-cartitem-id="${cartitem.cart_item_id}">
 							                    <img src="//theme.hstatic.net/1000096703/1000836887/14/ic_close.png?v=364">
 							                </a>
 							            </div>
 							        </div>
 							    </div>
 							</div>
+							<c:set var="totalAmount" value="${totalAmount + (cartitem.quantity * cartitem.product.price)}" />
 							
 						</c:forEach>
                     </div> 
@@ -118,7 +120,7 @@
                     <div class="order-summary-block"> 
                         <h2>Thông tin đơn hàng</h2> 
                         <div class="summary-total"> 
-                            <p>Tổng tiền: <span class="final-price">${cart.totalAmount}</span> 
+                            <p>Tổng tiền: <span class="final-price">${totalAmount}₫</span> 
                             </p> 
                         </div> 
                         <button class="btn" href="#">THANH TOÁN</button> 
@@ -132,7 +134,83 @@
 	
 	<script src="/js/jquery-3.7.1.min.js"></script>
 	<script>
+		$(document).ready(function () {
+		    // Xử lý sự kiện click vào nút xóa giỏ hàng
+		    $('.remove-icon').on('click', function (e) {
+		        e.preventDefault(); // Ngăn hành vi mặc định của nút
+
+		        const button = $(this); // Lấy nút hiện tại
+		        const cartItemId = button.data('cartitem-id'); // Lấy ID của cart item từ data-cartitem-id
+
+		        // Xác nhận với người dùng trước khi xóa
+		        if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+		            return;
+		        }
+
+		        // Gửi yêu cầu AJAX tới server để xóa món hàng khỏi giỏ
+		        $.ajax({
+		            url: '/cart/remove', 
+		            type: 'POST', 
+					contentType: 'application/x-www-form-urlencoded',
+		            data: {
+		                cart_item_id: cartItemId // Gửi ID của món hàng cần xóa
+		            },
+		            success: function (response) {
+		                // Nếu xóa thành công, cập nhật giao diện
+		                button.closest('.cart-item').remove(); // Xóa phần tử giỏ hàng khỏi giao diện
+		                
+		                // Có thể cập nhật lại tổng giá trị giỏ hàng hoặc các thông tin khác nếu cần
+		            },
+		            error: function (xhr, status, error) {
+		                console.error('Lỗi khi xóa sản phẩm:', error);
+		                alert('Có lỗi xảy ra khi xóa sản phẩm. Vui lòng thử lại.');
+		            }
+		        });
+		    });
+		});
 		
+		
+		$('.cart-item-quantity').on('change', function () {
+		        var quantity = $(this).val(); // Lấy số lượng mới từ input
+		        var cartItemId = $(this).data('cartitem-id'); // Lấy ID của cart item từ data-cartitem-id
+
+		        // Kiểm tra xem số lượng có hợp lệ không
+		        if (quantity < 1) {
+		            alert('Số lượng phải lớn hơn hoặc bằng 1');
+		            return;
+		        }
+
+		        // Gửi yêu cầu AJAX tới server để cập nhật lại số lượng
+		        $.ajax({
+		            url: '/cart/update', // URL để cập nhật số lượng
+		            type: 'POST',
+		            data: {
+		                cart_item_id: cartItemId,
+		                quantity: quantity // Gửi số lượng mới
+		            },
+		            success: function (response) {
+		                // Nếu cập nhật thành công, cập nhật lại tổng giá trị cho món hàng đó
+		                //var totalPrice = response.totalPrice; // Dữ liệu trả về có thể chứa tổng giá trị mới
+		                //$('#total-price-' + cartItemId).text(totalPrice + '₫'); // Cập nhật lại thành tiền cho món hàng
+						$.ajax({
+						                    url: '/cart', // Gọi lại API GET /cart để lấy giỏ hàng mới
+						                    type: 'GET',
+						                    success: function(cartResponse) {
+						                        //...
+						                        
+						                    },
+						                    error: function() {
+						                        alert("Có lỗi khi lấy giỏ hàng!");
+						                    }
+						                });
+		                // Có thể cập nhật lại tổng giỏ hàng ở đây nếu cần
+		            },
+		            error: function (xhr, status, error) {
+		                console.error('Lỗi khi cập nhật giỏ hàng:', error);
+		                alert('Có lỗi xảy ra khi cập nhật giỏ hàng. Vui lòng thử lại.');
+		            }
+		        });
+		    });
 
 	</script>
 </body> 

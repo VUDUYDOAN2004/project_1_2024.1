@@ -112,35 +112,68 @@
 	<div class="container products">
 	        <div class="row mt-3">
 				<c:forEach var="product" items="${products}">
-					<div class="col-md-4 product-item text-center">
-						<a href="#"><img src="/images/${product.image_url}" alt="${product.product_name}" class="img-fluid"></a>
-						<div class="pro_name"><a href="#"><h6>${product.product_name}</h6></a></div>
-						<select class="form-control"  id="sizeFilter" name="size">
-																        
-																        <option value="S">Size S</option>
-																        <option value="M">Size M</option>
-																        <option value="XL"> Size XL</option>
-																        <option value="XXL">Size XXL</option>
-											</select>
-						<p>Giá: ${product.price}</p>
-						<p>					<button class="btn addtocart" data-id="${product.product_id}">
-																        Thêm vào giỏ hàng
-																</button></p>
-					</div>
-				</c:forEach>
+								<div class="col-md-4 product-item text-center">
+									<a href="#"><img src="/images/${product.image_url}" alt="${product.product_name}"></a>
+									<div class="pro_name"><a href="#"><h6>${product.product_name}</h6></a></div>
+									<select class="form-control size-select" name="size">
+														        
+														        <option value="1">Size S</option>
+														        <option value="2">Size M</option>
+														        <option value="3"> Size L</option>
+														        <option value="4">Size XL</option>
+									</select>
+									<!-- Input số lượng -->
+									     <!--   <input type="number" class="form-control quantity-input" value="1" min="1" -->
+									<p>Giá: ${product.price} đ </p>
+									<p>					<button class="btn addtocart" data-id="${product.product_id}" data-cart-id="1">
+														        Thêm vào giỏ hàng
+														</button></p>
+									
+								</div>
+							</c:forEach>
 	        </div>
 	    </div>
 
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <script>
-        $('#addtocart').click(
-            $.ajax({
-                type: "GET",
-                url: "http://localhost:8081/cart/add",
+		<script src="/js/jquery-3.7.1.min.js"></script>
+				<script>
+					$(document).ready(function () {
+					        // Xử lý sự kiện click vào nút "Thêm vào giỏ hàng"
+					        $('.addtocart').on('click', function (e) {
+					            e.preventDefault(); // Ngăn hành vi mặc định của nút
 
-            })
-        );
-    </script>
+					            // Lấy thông tin sản phẩm
+					            const productId = $(this).data('id'); // ID sản phẩm
+					            const cartId = $(this).data('cart-id'); // ID giỏ hàng
+					            const parent = $(this).closest('.product-item'); // Container của sản phẩm
+					            const sizeId = parent.find('.size-select').val(); // ID size
+					            
+
+								
+
+					            // Gửi yêu cầu AJAX tới server
+					            $.ajax({
+					                url: '/cart/add', // URL API
+					                type: 'POST', // Phương thức POST
+					                contentType: 'application/x-www-form-urlencoded', // Kiểu dữ liệu gửi đi
+					                data: {
+					                    cart_id: cartId,
+					                    product_id: productId,
+					                    size_id: sizeId,
+					                    quantity: 1
+					                },
+					                success: function (response) {
+										
+										alert('Sản phẩm đã được thêm vào giỏ hàng!');
+					                },
+					                error: function (xhr, status, error) {
+					                    console.error('Lỗi khi thêm vào giỏ hàng:', error);
+					                    alert('Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại.');
+					                }
+					            });
+					        });
+					    });
+
+				</script>
 
 </body>
 
