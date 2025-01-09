@@ -1,14 +1,19 @@
 package com.javaweb.repository.entity;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 @Entity
@@ -17,37 +22,68 @@ public class SizeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "size_id")
-    private Long sizeId;
+    private Long size_id;
+    
+    @Column(name="size_name")
+    private String size_name;
 
-    private String name;
+    @ManyToMany(mappedBy = "sizes", fetch = FetchType.LAZY)
+	private List<ProductEntity> products = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
+    private List<CartItemEntity> cartItems = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
+    private List<OrderItemEntity> orderItems = new ArrayList<>();
 
-    @OneToMany(mappedBy = "size")
-    private List<ProductSizeEntity> productSizes;
+	
 
-	public Long getSizeId() {
-		return sizeId;
+	
+
+	public Long getSize_id() {
+		return size_id;
 	}
 
-	public void setSizeId(Long sizeId) {
-		this.sizeId = sizeId;
+	public void setSize_id(Long size_id) {
+		this.size_id = size_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getSize_name() {
+		return size_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSize_name(String size_name) {
+		this.size_name = size_name;
 	}
 
-	public List<ProductSizeEntity> getProductSizes() {
-		return productSizes;
+	public List<ProductEntity> getProducts() {
+		return products;
 	}
 
-	public void setProductSizes(List<ProductSizeEntity> productSizes) {
-		this.productSizes = productSizes;
+	public void setProducts(List<ProductEntity> products) {
+		this.products = products;
 	}
+
+	public List<CartItemEntity> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(List<CartItemEntity> cartItems) {
+		this.cartItems = cartItems;
+	}
+
+	public List<OrderItemEntity> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItemEntity> orderItems) {
+		this.orderItems = orderItems;
+	}
+    
+
+	
+
+	
 
     
 }

@@ -1,10 +1,16 @@
 package com.javaweb.repository.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +34,20 @@ public class UserEntity {
 
     @Column(name = "phone_number")
     private String phone_number;
+    
+    @OneToOne(mappedBy = "user")
+    private CartEntity cart;
+    
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private List<OrderEntity> order = new ArrayList<>();
+
+	public CartEntity getCart() {
+		return cart;
+	}
+
+	public void setCart(CartEntity cart) {
+		this.cart = cart;
+	}
 
 	public Long getUser_id() {
 		return user_id;

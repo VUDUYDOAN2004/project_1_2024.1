@@ -1,5 +1,6 @@
 package com.javaweb.repository.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,16 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cartitems")
+@Table(name = "cart_items")
 public class CartItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_item_id")
-    private Long cartItemId;
+    private Long cart_item_id;
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
@@ -30,14 +31,17 @@ public class CartItemEntity {
     @JoinColumn(name = "size_id")
     private SizeEntity size;
 
+    @Column(name = "quantity")
     private int quantity;
 
-	public Long getCartItemId() {
-		return cartItemId;
+	
+
+	public Long getCart_item_id() {
+		return cart_item_id;
 	}
 
-	public void setCartItemId(Long cartItemId) {
-		this.cartItemId = cartItemId;
+	public void setCart_item_id(Long cart_item_id) {
+		this.cart_item_id = cart_item_id;
 	}
 
 	public CartEntity getCart() {

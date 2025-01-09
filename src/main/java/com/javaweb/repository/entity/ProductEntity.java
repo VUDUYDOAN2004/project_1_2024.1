@@ -1,14 +1,21 @@
 package com.javaweb.repository.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,9 +41,50 @@ public class ProductEntity {
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private CategoryEntity category;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="productsizes",
+	joinColumns= @JoinColumn(name="product_id", nullable = false),
+	inverseJoinColumns = @JoinColumn(name="size_id", nullable = false))
+	private List<SizeEntity> sizes = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private List<CartItemEntity> cartItems = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private List<OrderItemEntity> orderItems = new ArrayList<>();
+	
+	
+	
+	
 
 	
+
 	
+
+	public List<OrderItemEntity> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItemEntity> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+	public List<CartItemEntity> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(List<CartItemEntity> cartItems) {
+		this.cartItems = cartItems;
+	}
+
+	public List<SizeEntity> getSizes() {
+		return sizes;
+	}
+
+	public void setSizes(List<SizeEntity> sizes) {
+		this.sizes = sizes;
+	}
 
 	public Long getProduct_id() {
 		return product_id;

@@ -2,6 +2,7 @@ package com.javaweb.repository.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,22 +21,35 @@ public class CartEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_id")
-    private Long cartId;
+    private Long cart_id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @OneToMany(mappedBy = "cart")
     private List<CartItemEntity> cartItems;
 
-	public Long getCartId() {
-		return cartId;
+    private double totalAmount;
+
+	
+
+	
+
+	public double getTotalAmount() {
+		return totalAmount;
 	}
 
-	public void setCartId(Long cartId) {
-		this.cartId = cartId;
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public Long getCart_id() {
+		return cart_id;
+	}
+
+	public void setCart_id(Long cart_id) {
+		this.cart_id = cart_id;
 	}
 
 	public UserEntity getUser() {

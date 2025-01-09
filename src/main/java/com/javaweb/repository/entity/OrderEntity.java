@@ -2,6 +2,7 @@ package com.javaweb.repository.entity;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,7 +38,9 @@ public class OrderEntity {
     private String status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItemEntity> orderItems;
+    private List<OrderItemEntity> orderItems = new ArrayList<>();
+    
+   
 
 	public Long getOrderId() {
 		return orderId;

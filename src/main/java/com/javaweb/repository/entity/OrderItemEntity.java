@@ -31,9 +31,11 @@ public class OrderItemEntity {
     @ManyToOne
     @JoinColumn(name = "size_id")
     private SizeEntity size;
-
+    
+    @Column(name="quantity")
     private int quantity;
-
+    
+    @Column(name="price")
     private double price;
 
 	public Long getOrderItemId() {

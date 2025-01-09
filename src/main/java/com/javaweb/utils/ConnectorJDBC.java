@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectorJDBC {
-	static final String DB_URL = "jdbc:mysql://localhost:3306/clothingweb2";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/clothingweb";
 	static final String USER = "root";
-	static final String PASSWORD = "123456";
+	static final String PASSWORD = "123";
 	
 	public static Connection getConnection() {
 		Connection conn = null;
