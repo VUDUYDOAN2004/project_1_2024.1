@@ -55,7 +55,7 @@
 	                   </div>
 
 	                   <div class="login-link">
-	                       <a href="login.html" class="btn-login">Đăng nhập</a>
+	                       <a href="/login" class="btn-login">Đăng nhập</a>
 	                   </div>
 	               </div>
 	           </div>

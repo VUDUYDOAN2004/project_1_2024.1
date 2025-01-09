@@ -18,4 +18,10 @@ public class ProductDTOConverter {
 
 		return product;
 	}
+	public ProductEntity toProductEntity(ProductDTO item) {
+		ProductEntity product = modelMapper.map(item, ProductEntity.class);
+
+		return product;
+	}
+	
 }

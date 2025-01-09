@@ -25,10 +25,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #2a8da1;
         }
         .login-container {
             max-width: 400px;
@@ -37,18 +37,22 @@
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: var(--color-one) solid 30px;
         }
         .form-control:focus {
             box-shadow: none;
-            border-color: #007bff;
+            border-color: var(--color-one);
         }
         .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: var(--color-one);
+            border-color: var(--color-one);
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="header-top">PROJECT 1 SHOP BÁN ĐỒ THỂ THAO</div>
+    </header>
     <div class="login-container">
         <h3 class="text-center mb-4">Đăng Nhập</h3>
         <form>

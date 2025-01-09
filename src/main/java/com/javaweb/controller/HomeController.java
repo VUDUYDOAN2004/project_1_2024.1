@@ -29,14 +29,16 @@ public class HomeController {
         return mav;
     	
     }
-
+    
     @GetMapping(value="/products")
     public String productPage() {
     	return "product";
     }
 //    @GetMapping(value="/cart")
-//    public String cartPage() {
-//    	return "cart";
+//    public ModelAndView cartPage() {
+//    	ModelAndView mav = new ModelAndView("cart");
+//    	
+//    	return mav;
 //    }
     @GetMapping(value="/login")
     public String loginPage() {

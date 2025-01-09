@@ -1,11 +1,18 @@
 package com.javaweb.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.javaweb.repository.entity.CartItemEntity;
+import com.javaweb.repository.entity.CategoryEntity;
+import com.javaweb.repository.entity.OrderItemEntity;
+import com.javaweb.repository.entity.SizeEntity;
 
 public class ProductDTO {
 	private Long product_id;
@@ -13,12 +20,13 @@ public class ProductDTO {
 	private String description;
 	private double price;
 	private String image_url;
-	private Long category_id;
-	public Long getCategory_id() {
-		return category_id;
+	private CategoryEntity category;
+	
+	public CategoryEntity getCategory() {
+		return category;
 	}
-	public void setCategory_id(Long category_id) {
-		this.category_id = category_id;
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 	public Long getProduct_id() {
 		return product_id;
@@ -52,6 +60,7 @@ public class ProductDTO {
 	public void setImage_url(String image_url) {
 		this.image_url = image_url;
 	}
+	
 	
 	
 	
