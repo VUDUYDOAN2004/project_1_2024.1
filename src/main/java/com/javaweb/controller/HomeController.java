@@ -1,50 +1,47 @@
 package com.javaweb.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaweb.model.ProductDTO;
 import com.javaweb.service.impl.ProductService;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class HomeController {
-	@Autowired
+    @Autowired
     private ProductService productService;
-	
-	
-//    HttpServletRequest request
+    
     @GetMapping(value="/")
     public ModelAndView home(){
        ModelAndView mav = new ModelAndView("index");
        List<ProductDTO> products = productService.findAll();
        mav.addObject("products", products);
         return mav;
-    	
+    }
+
+    @GetMapping(value="/home")
+    public ModelAndView home2(){
+       ModelAndView mav = new ModelAndView("home");
+       List<ProductDTO> products = productService.findAll();
+       mav.addObject("products", products);
+        return mav;
     }
     
     @GetMapping(value="/products")
     public String productPage() {
-    	return "product";
+        return "product";
     }
-//    @GetMapping(value="/cart")
-//    public ModelAndView cartPage() {
-//    	ModelAndView mav = new ModelAndView("cart");
-//    	
-//    	return mav;
-//    }
-    @GetMapping(value="/login")
-    public String loginPage() {
-    	return "login";
-    }
-    
+
+    // @GetMapping("/home")
+    // public String homePage() {
+    //     return "home";
+    // }
+
     @GetMapping(value = "/products/category")
     public ModelAndView productPage(@RequestParam("category") String category) {
         List<ProductDTO> products = productService.findByCategory(category);
@@ -55,9 +52,4 @@ public class HomeController {
         
         return mav;
     }
-    
-    
-
-
-
 }

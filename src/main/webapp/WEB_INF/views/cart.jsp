@@ -86,7 +86,6 @@
 							        <div class="item-info">
 							            <div class="small-text">${cartitem.product.product_name}</div>
 							            <div class="item-size">
-											
 							                <span>${cartitem.size.size_name}</span>
 							            </div>
 							        </div>
@@ -112,7 +111,6 @@
 							    </div>
 							</div>
 							<c:set var="totalAmount" value="${totalAmount + (cartitem.quantity * cartitem.product.price)}" />
-							
 						</c:forEach>
                     </div> 
                 </div> 
@@ -123,16 +121,16 @@
                             <p>Tổng tiền: <span class="final-price">${totalAmount}₫</span> 
                             </p> 
                         </div> 
-                        <button class="btn" href="#">THANH TOÁN</button> 
+                        <form action="/cart/checkout" method="GET">
+                            <button type="submit" class="btn">THANH TOÁN</button>
+                        </form>
                     </div> 
                 </div> 
             </div> 
         </div> 
     </div> 
 
-    
-	
-	<script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
 	<script>
 		$(document).ready(function () {
 		    // Xử lý sự kiện click vào nút xóa giỏ hàng
@@ -167,10 +165,9 @@
 		            }
 		        });
 		    });
-		});
-		
-		
-		$('.cart-item-quantity').on('change', function () {
+
+		    // Xử lý sự kiện thay đổi số lượng sản phẩm trong giỏ hàng
+		    $('.cart-item-quantity').on('change', function () {
 		        var quantity = $(this).val(); // Lấy số lượng mới từ input
 		        var cartItemId = $(this).data('cartitem-id'); // Lấy ID của cart item từ data-cartitem-id
 
@@ -196,8 +193,9 @@
 						                    url: '/cart', // Gọi lại API GET /cart để lấy giỏ hàng mới
 						                    type: 'GET',
 						                    success: function(cartResponse) {
+						                        // Cập nhật lại giao diện giỏ hàng với dữ liệu mới
 						                        //...
-						                        
+						                        location.reload(); // Reload the page to update the cart
 						                    },
 						                    error: function() {
 						                        alert("Có lỗi khi lấy giỏ hàng!");
@@ -211,7 +209,7 @@
 		            }
 		        });
 		    });
-
+		});
 	</script>
 </body> 
 

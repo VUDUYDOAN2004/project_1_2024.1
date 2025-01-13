@@ -6,26 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <style>
         body {
             background-color: #2a8da1;
@@ -55,29 +44,34 @@
     </header>
     <div class="login-container">
         <h3 class="text-center mb-4">Đăng Nhập</h3>
-        <form>
+        <c:if test="${not empty errorMessage}">
+            <div class="alert alert-danger" role="alert">
+                ${errorMessage}
+            </div>
+        </c:if>
+        <form action="${pageContext.request.contextPath}/login" method="post">
             <div class="mb-3">
-                <label for="email" class="form-label">Địa chỉ Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn" name="email">
+                <label for="username" class="form-label">Tên đăng nhập</label>
+                <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" name="username">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mật khẩu</label>
-                <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name = "password">
+                <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="password">
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="remember">
                 <label class="form-check-label" for="remember">Ghi nhớ đăng nhập</label>
             </div>
             <button type="submit" class="btn btn-primary w-100">Đăng Nhập</button>
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger mt-3" role="alert">
+                    ${error}
+                </div>
+            </c:if>
         </form>
         <div class="text-center mt-3">
-            <a href="#">Quên mật khẩu?</a> | <a href="register.html">Đăng ký</a>
+            <a href="#">Quên mật khẩu?</a> | <a href="${pageContext.request.contextPath}/register">Đăng ký</a>
         </div>
     </div>
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
-</body>
-</html>
-
 </body>
 </html>

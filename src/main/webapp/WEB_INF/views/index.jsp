@@ -55,7 +55,14 @@
 	                   </div>
 
 	                   <div class="login-link">
-	                       <a href="/login" class="btn-login">Đăng nhập</a>
+	                       <c:choose>
+	                           <c:when test="${not empty sessionScope.user}">
+	                               <a href="<c:url value='/logout' />" class="btn-logout">Đăng xuất</a>
+	                           </c:when>
+	                           <c:otherwise>
+									<a href="/logout" class="btn-logout">Đăng xuất</a>
+	                           </c:otherwise>
+	                       </c:choose>
 	                   </div>
 	               </div>
 	           </div>

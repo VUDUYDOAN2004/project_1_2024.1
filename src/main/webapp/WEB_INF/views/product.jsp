@@ -50,7 +50,15 @@
                     </div>
 
                     <div class="login-link">
-                        <a href="/login" class="btn-login">Đăng nhập</a>
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.user}">
+                                <a href="/logout" class="btn-login">Đăng xuất</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/login" class="btn-login">Đăng nhập</a>
+                                <a href="/register" class="btn-register">Đăng ký</a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
