@@ -51,6 +51,7 @@
 	                           <li><a href="/">Trang chủ</a></li>
 	                           <li><a href="/products">Sản phẩm</a></li>
 	                           <li><a href="/cart">Giỏ hàng</a></li>
+							   <li><a href="/orders">Đơn hàng</a></li>
 	                       </ul>
 	                   </div>
 

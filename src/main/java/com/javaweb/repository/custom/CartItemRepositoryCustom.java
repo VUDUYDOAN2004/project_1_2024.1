@@ -1,4 +1,4 @@
-package com.javaweb.repository;
+package com.javaweb.repository.custom;
 
 import com.javaweb.repository.entity.CartItemEntity;
 

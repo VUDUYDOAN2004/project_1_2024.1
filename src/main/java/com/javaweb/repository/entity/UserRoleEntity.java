@@ -35,13 +35,6 @@ public class UserRoleEntity implements Serializable {
         this.role = role;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public UserEntity getUser() {
         return user;
@@ -57,5 +50,13 @@ public class UserRoleEntity implements Serializable {
 
     public void setRole(RoleEntity role) {
         this.role = role;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

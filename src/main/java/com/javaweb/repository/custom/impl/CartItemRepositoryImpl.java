@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import com.javaweb.repository.CartItemRepositoryCustom;
+import com.javaweb.repository.custom.CartItemRepositoryCustom;
 import com.javaweb.repository.entity.CartItemEntity;
 
 public class CartItemRepositoryImpl implements CartItemRepositoryCustom {

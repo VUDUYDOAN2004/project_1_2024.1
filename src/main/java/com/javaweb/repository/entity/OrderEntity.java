@@ -1,6 +1,5 @@
 package com.javaweb.repository.entity;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,8 @@ public class OrderEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItemEntity> orderItems = new ArrayList<>();
     
-   
+    // Getters and setters
+    // ...
 
 	public Long getOrderId() {
 		return orderId;

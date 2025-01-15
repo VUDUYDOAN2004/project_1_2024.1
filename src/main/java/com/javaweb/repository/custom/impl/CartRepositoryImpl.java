@@ -23,28 +23,45 @@ public class CartRepositoryImpl implements CartRepositoryCustom {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
+    
+    
+
     @Transactional
-    public void addCartItem(Long cart_id,Long product_id,Long size_id, int quantity) {
-    	StringBuilder sql = new StringBuilder(
-    	        "INSERT INTO cart_items (cart_id, product_id, size_id, quantity) " +
-    	        "VALUES (?, ?, ?, ?) " +
-    	        "ON DUPLICATE KEY UPDATE quantity = quantity +  VALUES(quantity)"
-    	    );
-
-    	  
-    	    Query query = entityManager.createNativeQuery(sql.toString());
-    	    
-    	    
-    	    query.setParameter(1, cart_id);
-    	    query.setParameter(2, product_id);
-    	    query.setParameter(3, size_id);
-    	    query.setParameter(4, quantity);
-    	    
-
-    	    
-    	    query.executeUpdate();
+    public void addCartItem(Long cart_id, Long product_id, Long size_id, int quantity) {
+        // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+        String checkSql = "SELECT COUNT(*) FROM cart_items WHERE cart_id = ? AND product_id = ? AND size_id = ?";
+        Query checkQuery = entityManager.createNativeQuery(checkSql);
+        checkQuery.setParameter(1, cart_id);
+        checkQuery.setParameter(2, product_id);
+        checkQuery.setParameter(3, size_id);
+    
+        // Lấy kết quả kiểm tra
+        Long count = ((Number) checkQuery.getSingleResult()).longValue();
+    
+        if (count > 0) {
+            // Nếu sản phẩm đã tồn tại, tăng quantity thêm 1
+            String updateSql = "UPDATE cart_items SET quantity = quantity + ? WHERE cart_id = ? AND product_id = ? AND size_id = ?";
+            Query updateQuery = entityManager.createNativeQuery(updateSql);
+            updateQuery.setParameter(1, quantity);
+            updateQuery.setParameter(2, cart_id);
+            updateQuery.setParameter(3, product_id);
+            updateQuery.setParameter(4, size_id);
+            updateQuery.executeUpdate();
+        } else {
+            // Nếu sản phẩm chưa tồn tại, thêm sản phẩm mới
+            String insertSql = "INSERT INTO cart_items (cart_id, product_id, size_id, quantity) VALUES (?, ?, ?, ?)";
+            Query insertQuery = entityManager.createNativeQuery(insertSql);
+            insertQuery.setParameter(1, cart_id);
+            insertQuery.setParameter(2, product_id);
+            insertQuery.setParameter(3, size_id);
+            insertQuery.setParameter(4, quantity);
+            insertQuery.executeUpdate();
+        }
     }
+    
+
+    
+    
 
     @Override
     @Transactional

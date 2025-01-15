@@ -18,8 +18,11 @@ import com.javaweb.model.ProductDTO;
 import com.javaweb.model.SizeDTO;
 import com.javaweb.repository.CartItemRepository;
 import com.javaweb.repository.CartRepository;
+import com.javaweb.repository.OrderRepository;
 import com.javaweb.repository.entity.CartEntity;
 import com.javaweb.repository.entity.CartItemEntity;
+import com.javaweb.repository.entity.OrderEntity;
+import com.javaweb.repository.entity.OrderItemEntity;
 import com.javaweb.repository.entity.ProductEntity;
 import com.javaweb.repository.entity.SizeEntity;
 
@@ -30,6 +33,8 @@ public class CartService {
     private CartRepository cartRepository;
     @Autowired
     private CartItemRepository cartItemRepository;
+    @Autowired
+    private OrderRepository orderRepository;
     @Autowired
     private CartDTOConverter cartDTOConverter;
     @Autowired
@@ -90,7 +95,27 @@ public class CartService {
     @Transactional
     public void checkout(Long cartId) {
         CartEntity cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cart not found"));
-        // Implement checkout logic here
+        
+        // Create a new order
+        OrderEntity order = new OrderEntity();
+        order.setUser(cart.getUser());
+        order.setTotalAmount(cart.getTotalAmount());
+        
+        List<OrderItemEntity> orderItems = new ArrayList<>();
+        for (CartItemEntity cartItem : cart.getCartItems()) {
+            OrderItemEntity orderItem = new OrderItemEntity();
+            orderItem.setOrder(order);
+            orderItem.setProduct(cartItem.getProduct());
+            orderItem.setSize(cartItem.getSize());
+            orderItem.setQuantity(cartItem.getQuantity());
+            orderItem.setPrice(cartItem.getProduct().getPrice().doubleValue());
+            orderItems.add(orderItem);
+        }
+        order.setOrderItems(orderItems);
+        
+        // Save the order
+        orderRepository.save(order);
+        
         // Clear the cart after successful payment
         cart.getCartItems().clear();
         cart.setTotalAmount(0);
